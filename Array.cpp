@@ -7,7 +7,6 @@ void pushHead(int arr[],int value) {
     while(arr[n]) {
         n++;
     }
-    int first = 1;
     n++;
     for(int i=n-1;i>=0;i--) {
         arr[i+1] = arr[i];
@@ -69,7 +68,6 @@ void popHead(int arr[]) {
     for(int i=0;i<n;i++) {
         arr[i] = arr[i+1];
     }
-    n--;
 }
 
 void popMid(int arr[], int search) {
@@ -86,7 +84,6 @@ void popMid(int arr[], int search) {
     for(int i=index;i<n;i++) {
         arr[i] = arr[i+1];
     }
-    n--;
 }
 
 void popTail(int arr[]) {
@@ -97,7 +94,6 @@ void popTail(int arr[]) {
     for(int i = n-1; i<=n; i++) {
         arr[i] = arr[i+1];
     }
-    n--;
 }
 
 void printArray(int arr[]) {
