@@ -14,17 +14,27 @@ Node *createNode(int value) {
     newNode->next = newNode;
     return newNode;
 }
-void push(int value) {  
+
+void sortedPush(int value) {
     Node *temp = createNode(value);
-    if(!head){  
-        head = tail = temp;  
-        temp->next = head;  
-    } else {  
-        tail->next = temp;
-        tail = temp;  
-        tail->next = head;  
-    }     
-}  
+    Node *curr = head;
+    if (!head) {
+        head = tail = temp;
+    } else if (curr->value >= temp->value) {
+        while(curr->next != head) {
+            curr = curr->next;
+        }
+        curr->next = temp;
+        temp->next = head;
+        head = temp;
+    } else {
+        while (curr->next!= head && curr->next->value < temp->value) {
+            curr = curr->next;
+        }
+        temp->next = curr->next;
+        curr->next = temp;
+    }
+} 
 
 void sortAscending() {  
     Node *curr = head, *index = NULL;  
@@ -111,10 +121,9 @@ int main()
    while(n--) {
        cout << "enter value of node" << endl;
        cin >> value;
-       push(value);
+       sortedPush(value);
    }
    cout << "sorted circularly singly link list" << endl;
-   sortAscending();
    printLinked();   
    getchar();
    printTotal();
