@@ -104,7 +104,7 @@ void printTotal() {
     }  
     else{  
         do{  
-            total = curr->value;
+            total += curr->value;
             n++;
             curr = curr->next;  
          }while(curr != head);  
