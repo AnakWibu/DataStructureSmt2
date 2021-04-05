@@ -175,7 +175,7 @@ void updateNode(int search) {
     }
     int update;
     char nim[10];
-    char name[5];
+    char name[50];
     int nilaiTugas;
     int nilaiQuiz;
     int nilaiUTS;
