@@ -24,30 +24,56 @@ void editStack(const char name[]);
 void printStack();
 void sortAscending();
 void sortDescending();
+void menu();
 
 int main() {
-    // pushStack("Chaaerul");
-    // pushStack("Hamdan");
-    // pushStack("Lawak");
-    // pushStack("Lo");
-    // pushStack("Badut");
-    // printStack();
-    // getchar();
-    // removeStack();
-    // printStack();
-    // getchar();
-    // editStack("Lo");
-    // printStack();
-    // getchar();
-    // sortAscending();
-    // printStack();
-    // getchar();
-    // sortDescending();
-    // printStack();
-    // getchar();
-    // cout << stack << endl;
+    system("cls");
+    int option;
+    menu();
+    cin >> option;
+    char name[255];
+    switch(option) {
+        case 1:
+            if(stack == 15) {
+                cout << "Stack Penuh Tidak bisa menginput Data Lagi...." << endl;
+                system("pause");
+                main();
+            }
+            cout << "Masukan Data ke-" << stack+1 << " : "; cin >> name;
+            pushStack(name);
+            break;
+        case 2:
+            removeStack();
+            break;
+        case 3:
+            cout << "Masukan Nama yang akan di Edit : "; cin >> name;
+            editStack(name);
+            break;
+        case 4:
+            sortAscending();
+            break;
+        case 5:
+            sortDescending();
+            break;
+        default:
+            exit(0);
+            break;
+    }
+    return 0;
 }
 
+void menu() {
+    cout << "       Program Stack Linked List       " << endl;
+    cout << "=======================================" << endl;
+    printStack();
+    cout << "Menu." << endl;
+    cout << "1. Tambah Data\n"
+            "2. Hapus Data\n"
+            "3. Edit Data\n"
+            "4. Sorting Ascending\n"
+            "5. Sorting Descending" << endl;
+    cout << ">> ";
+}
 
 void pushStack(const char name[]) {
     Node *temp = createNode(name);
@@ -66,7 +92,7 @@ void pushStack(const char name[]) {
 
 void removeStack() {
     char valid; 
-    cout << "Apakah Anda akan menghapus Data Bernama " << top->name << " ?" << endl;
+    cout << "Apakah Anda akan menghapus Data ke-" << stack+1 <<  " Bernama " << top->name << " ?" << endl;
     cout << "Tekan Y/y untuk menghapus tekan selain itu untuk membatalkan\n" << ">> ";
     cin >> valid;
     if(valid == 'Y' || valid == 'y') {
@@ -94,11 +120,11 @@ void editStack(const char name[]) {
     Node *curr = top;
     int flag = 0;
     while(curr) {
-        curr = curr->next;
         if(strcmp(curr->name,name)==0) {
             flag = 1;
             break;
         }
+        curr = curr->next;
     }
     if(flag) {
         char update[255];
@@ -114,11 +140,18 @@ void editStack(const char name[]) {
 }
 
 void printStack() {
-    Node *curr = top;
-    puts("Stack: ");
-    while(curr) {
-        cout << curr->name << endl;
-        curr = curr->next;
+    if(!top) {
+        cout << " Stack Kosong....." << endl;
+    } else {
+        Node *curr = top;
+        puts("\n=================================\n");
+        cout << "Maksimal Stack yang bisa ditampung = 15" << endl;
+        puts("Stack: ");
+        while(curr) {
+            cout << curr->name << endl;
+            curr = curr->next;
+        }
+        puts("\n=================================");
     }
 }
 
@@ -141,6 +174,9 @@ void sortAscending() {
             curr =curr->next;  
         }while(curr->next != NULL);   
     }  
+    cout << "Data Berhasil di Sorting secara Ascending....." << endl;
+    system("pause");
+    main();
 }
 
 void sortDescending() {
@@ -162,4 +198,7 @@ void sortDescending() {
             curr =curr->next;  
         }while(curr->next != NULL);   
     }  
+    cout << "Data Berhasil di Sorting secara Descending....." << endl;
+    system("pause");
+    main();
 }
